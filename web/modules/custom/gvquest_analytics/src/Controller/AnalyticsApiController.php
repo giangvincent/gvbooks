@@ -22,7 +22,7 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
  */
 class AnalyticsApiController extends ControllerBase implements ContainerInjectionInterface {
 
-  protected EntityTypeManagerInterface $entityTypeManager;
+  protected $entityTypeManager;
   protected AnalyticsAggregator $aggregator;
   protected UserDataInterface $userData;
   protected CsrfTokenGenerator $csrfToken;

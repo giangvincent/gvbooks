@@ -11,7 +11,7 @@ services:
       - '@database'
       - '@datetime.time'
       - '@config.factory'
-      - '@logger.channel.gvquest_analytics'
+      - '@logger.channel.default'
       - '@gvquest_streaks.calculator'
 
   gvquest_analytics.cron:
