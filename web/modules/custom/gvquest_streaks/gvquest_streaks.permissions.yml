@@ -1,0 +1,14 @@
+log reading progress:
+  title: 'Log reading progress'
+  description: 'Allow users to record their daily reading activity.'
+  restrict access: false
+
+administer streak rules:
+  title: 'Administer streak rules'
+  description: 'Manage streak rule defaults and settings.'
+  restrict access: true
+
+view all reading logs:
+  title: 'View all reading logs'
+  description: 'View and manage reading logs for all users.'
+  restrict access: true

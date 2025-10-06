@@ -72,7 +72,7 @@
     <section class="mb-12">
       <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
         <h2 class="gvquest-dashboard-heading">My Library</h2>
-        <a href="{{ path('node.add_page') }}" class="inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-sm font-semibold text-brand-deep shadow-md hover:bg-orange-400">
+        <a href="{{ path('node.add', {'node_type': 'book'}) }}" class="inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-sm font-semibold text-brand-deep shadow-md hover:bg-orange-400">
           <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
           </svg>

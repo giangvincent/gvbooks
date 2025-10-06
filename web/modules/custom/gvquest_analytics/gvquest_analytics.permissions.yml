@@ -1,0 +1,19 @@
+post analytics events:
+  title: 'Post analytics events'
+  description: 'Allow users to send reading analytics events.'
+  restrict access: false
+
+view own analytics:
+  title: 'View own analytics'
+  description: 'View personal analytics dashboards.'
+  restrict access: false
+
+view all analytics:
+  title: 'View all analytics'
+  description: 'View analytics for all users.'
+  restrict access: true
+
+administer analytics settings:
+  title: 'Administer analytics settings'
+  description: 'Manage analytics configuration and telemetry toggles.'
+  restrict access: true

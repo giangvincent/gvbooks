@@ -1,0 +1,87 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - gvquest_analytics
+    - user
+id: my_daily_reading
+label: 'My Daily Reading'
+module: views
+description: 'Daily aggregates of reading activity for the current user.'
+tag: ''
+base_table: gvquest_analytics_daily
+base_field: date
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'My Daily Reading'
+      access:
+        type: perm
+        options:
+          perm: 'view own analytics'
+      query:
+        type: views_query
+      pager:
+        type: mini
+        options:
+          items_per_page: 20
+      style:
+        type: table
+        options:
+          default_row_class: true
+      row:
+        type: fields
+      fields:
+        date:
+          id: date
+          table: gvquest_analytics_daily
+          field: date
+          plugin_id: field
+          label: 'Date'
+        minutes:
+          id: minutes
+          table: gvquest_analytics_daily
+          field: minutes
+          plugin_id: field
+          label: 'Minutes'
+        pages:
+          id: pages
+          table: gvquest_analytics_daily
+          field: pages
+          plugin_id: field
+          label: 'Pages'
+        last_percent:
+          id: last_percent
+          table: gvquest_analytics_daily
+          field: last_percent
+          plugin_id: field
+          label: 'Percent'
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      arguments:
+        uid:
+          id: uid
+          table: gvquest_analytics_daily
+          field: uid
+          plugin_id: numeric
+          default_action: default
+          default_argument_type: current_user
+          summary:
+            number_of_records: false
+      cache:
+        type: tag
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      path: analytics/my-daily-reading
+      menu:
+        type: none

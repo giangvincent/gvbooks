@@ -1,0 +1,49 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function gvquest_streaks_schema() {
+  $schema['gvquest_streak_cache'] = [
+    'description' => 'Stores cached streak metrics for each user.',
+    'fields' => [
+      'uid' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'current_streak' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'longest_streak' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'missed_days_window' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'last_active' => [
+        'type' => 'varchar',
+        'length' => 16,
+        'not null' => FALSE,
+      ],
+      'updated' => [
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['uid'],
+  ];
+
+  return $schema;
+}

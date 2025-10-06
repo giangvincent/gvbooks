@@ -1,0 +1,4 @@
+telemetry_enabled: true
+default_user_opt_in: true
+debounce_seconds: 5
+aggregation_lookback_days: 30

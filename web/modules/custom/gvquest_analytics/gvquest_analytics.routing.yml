@@ -1,0 +1,39 @@
+gvquest_analytics.dashboard:
+  path: '/dashboard/analytics'
+  defaults:
+    _controller: '\\Drupal\\gvquest_analytics\\Controller\\AnalyticsDashboardController::dashboard'
+    _title: 'Reading analytics'
+  requirements:
+    _permission: 'view own analytics'
+
+
+gvquest_analytics.ingest:
+  path: '/api/analytics/reading-event'
+  defaults:
+    _controller: '\\Drupal\\gvquest_analytics\\Controller\\AnalyticsApiController::ingest'
+    _title: 'Reading event ingest'
+  requirements:
+    _permission: 'post analytics events'
+    _csrf_token: 'TRUE'
+  methods: [POST]
+
+
+gvquest_analytics.summary:
+  path: '/api/analytics/summary'
+  defaults:
+    _controller: '\\Drupal\\gvquest_analytics\\Controller\\AnalyticsApiController::summary'
+    _title: 'Analytics summary'
+  requirements:
+    _permission: 'view own analytics'
+  methods: [GET]
+
+
+gvquest_analytics.settings:
+  path: '/admin/config/gvquest/analytics'
+  defaults:
+    _form: '\\Drupal\\gvquest_analytics\\Form\\AnalyticsSettingsForm'
+    _title: 'Analytics settings'
+  requirements:
+    _permission: 'administer analytics settings'
+  options:
+    _admin_route: TRUE

@@ -16,7 +16,7 @@
     @apply bg-brand-deep text-white shadow-lg;
   }
   .gvquest-navbar__link {
-    @apply px-4 py-2 text-sm font-semibold transition-colors hover:text-brand-accent;
+    @apply px-4 py-2 text-sm font-semibold transition-colors text-white hover:text-brand-accent;
   }
   .gvquest-dashboard-wrapper {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10;

@@ -1,0 +1,10 @@
+dashboard:
+  css:
+    theme:
+      css/streak-dashboard.css: {}
+  js:
+    js/streak-log.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once

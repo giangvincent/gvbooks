@@ -1,0 +1,24 @@
+services:
+  logger.channel.gvquest_analytics:
+    class: Drupal\Core\Logger\LoggerChannel
+    factory: ['@logger.factory', 'get']
+    arguments: ['gvquest_analytics']
+
+  gvquest_analytics.aggregator:
+    class: Drupal\gvquest_analytics\Service\AnalyticsAggregator
+    arguments:
+      - '@entity_type.manager'
+      - '@database'
+      - '@datetime.time'
+      - '@config.factory'
+      - '@logger.channel.gvquest_analytics'
+      - '@gvquest_streaks.calculator'
+
+  gvquest_analytics.cron:
+    class: Drupal\gvquest_analytics\Cron\AggregationCron
+    arguments:
+      - '@gvquest_analytics.aggregator'
+      - '@entity_type.manager'
+      - '@logger.channel.gvquest_analytics'
+    tags:
+      - { name: cron }

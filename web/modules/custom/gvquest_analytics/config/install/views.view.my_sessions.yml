@@ -1,0 +1,110 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - gvquest_analytics
+    - user
+id: my_sessions
+label: 'My Sessions'
+module: views
+description: 'Raw reading sessions for the current user.'
+tag: ''
+base_table: reading_event
+base_field: id
+display:
+  default:
+    id: default
+    display_title: Default
+    display_plugin: default
+    position: 0
+    display_options:
+      title: 'My Sessions'
+      access:
+        type: perm
+        options:
+          perm: 'view own analytics'
+      query:
+        type: views_query
+      pager:
+        type: mini
+        options:
+          items_per_page: 25
+      style:
+        type: table
+        options:
+          default_row_class: true
+      row:
+        type: fields
+      fields:
+        started_at:
+          id: started_at
+          table: reading_event
+          field: started_at
+          plugin_id: field
+          label: 'Started'
+        ended_at:
+          id: ended_at
+          table: reading_event
+          field: ended_at
+          plugin_id: field
+          label: 'Ended'
+        duration:
+          id: duration
+          table: reading_event
+          field: duration
+          plugin_id: field
+          label: 'Duration (s)'
+        pages_delta:
+          id: pages_delta
+          table: reading_event
+          field: pages_delta
+          plugin_id: field
+          label: 'Pages'
+        current_page:
+          id: current_page
+          table: reading_event
+          field: current_page
+          plugin_id: field
+          label: 'Current page'
+        percent_complete:
+          id: percent_complete
+          table: reading_event
+          field: percent_complete
+          plugin_id: field
+          label: 'Percent'
+        source:
+          id: source
+          table: reading_event
+          field: source
+          plugin_id: field
+          label: 'Source'
+      arguments:
+        user_id:
+          id: user_id
+          table: reading_event
+          field: user_id
+          plugin_id: numeric
+          default_action: default
+          default_argument_type: current_user
+      filter_groups:
+        operator: AND
+        groups:
+          1: AND
+      sorts:
+        ended_at:
+          id: ended_at
+          table: reading_event
+          field: ended_at
+          plugin_id: standard
+          order: DESC
+      cache:
+        type: tag
+  page_1:
+    id: page_1
+    display_title: Page
+    display_plugin: page
+    position: 1
+    display_options:
+      path: analytics/my-sessions
+      menu:
+        type: none

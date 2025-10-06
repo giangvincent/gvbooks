@@ -1,0 +1,29 @@
+gvquest_streaks.dashboard:
+  path: '/dashboard/streaks'
+  defaults:
+    _controller: '\Drupal\gvquest_streaks\Controller\StreakDashboardController::dashboard'
+    _title: 'Reading streaks'
+  requirements:
+    _permission: 'access content'
+
+
+gvquest_streaks.log:
+  path: '/gvquest-streaks/log'
+  defaults:
+    _controller: '\Drupal\gvquest_streaks\Controller\StreakDashboardController::log'
+    _title: 'Log reading activity'
+  requirements:
+    _permission: 'log reading progress'
+    _csrf_token: 'TRUE'
+  methods: [POST]
+
+
+gvquest_streaks.settings:
+  path: '/admin/config/gvquest/streaks'
+  defaults:
+    _form: '\Drupal\gvquest_streaks\Form\StreakRuleForm'
+    _title: 'Streak settings'
+  requirements:
+    _permission: 'administer streak rules'
+  options:
+    _admin_route: TRUE

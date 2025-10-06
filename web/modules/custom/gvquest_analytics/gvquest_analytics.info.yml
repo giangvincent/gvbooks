@@ -1,0 +1,14 @@
+name: 'GVQuest Analytics'
+type: module
+description: 'Captures reading telemetry and aggregates daily analytics with dashboard visualizations.'
+core_version_requirement: ^10
+package: 'GVQuest'
+dependencies:
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:views
+  - drupal:datetime
+  - drupal:field
+  - drupal:filter
+  - gvquest_streaks:gvquest_streaks

@@ -1,0 +1,18 @@
+services:
+  gvquest_streaks.calculator:
+    class: Drupal\gvquest_streaks\Service\StreakCalculator
+    arguments:
+      - '@entity_type.manager'
+      - '@config.factory'
+      - '@database'
+      - '@datetime.time'
+      - '@logger.channel.default'
+
+  gvquest_streaks.cron:
+    class: Drupal\gvquest_streaks\Cron\StreakCron
+    arguments:
+      - '@entity_type.manager'
+      - '@queue'
+      - '@logger.channel.default'
+    tags:
+      - { name: cron }

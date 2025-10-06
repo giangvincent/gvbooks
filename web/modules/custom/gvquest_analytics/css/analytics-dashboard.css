@@ -1,0 +1,50 @@
+.gvquest-analytics__chart-card {
+  background: #ffffff;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  box-shadow: 0 15px 30px rgba(15, 27, 76, 0.08);
+}
+
+.gvquest-analytics__sparkline,
+.gvquest-analytics__barchart {
+  min-height: 120px;
+  display: grid;
+  align-items: end;
+  gap: 0.5rem;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+}
+
+.gvquest-analytics__sparkline span,
+.gvquest-analytics__barchart span {
+  display: block;
+  width: 100%;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #0f1b4c, #ff7a18);
+}
+
+.gvquest-analytics__sparkline span {
+  height: 4px;
+}
+
+.gvquest-analytics__barchart span {
+  min-height: 12px;
+}
+
+.gvquest-analytics__table {
+  margin-top: 2rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(15, 27, 76, 0.05);
+}
+.gvquest-analytics__table table {
+  width: 100%;
+}
+.gvquest-analytics__table thead {
+  background: #0f1b4c;
+  color: #ffffff;
+}
+.gvquest-analytics__table td,
+.gvquest-analytics__table th {
+  padding: 0.75rem 1rem;
+}
+

@@ -1,0 +1,14 @@
+gvquest_streaks.dashboard:
+  title: 'Reading streaks'
+  description: 'View your current and historical reading streaks.'
+  route_name: gvquest_streaks.dashboard
+  menu_name: main
+  weight: 5
+
+
+gvquest_streaks.settings:
+  title: 'Streak settings'
+  description: 'Configure default streak targets and reminders.'
+  route_name: gvquest_streaks.settings
+  parent: system.admin_config_services
+  weight: 0

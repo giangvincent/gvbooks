@@ -1,0 +1,14 @@
+gvquest_analytics.dashboard:
+  title: 'Reading analytics'
+  description: 'Review recent reading activity and insights.'
+  route_name: gvquest_analytics.dashboard
+  menu_name: main
+  weight: 6
+
+
+gvquest_analytics.settings:
+  title: 'Analytics settings'
+  description: 'Configure telemetry and aggregation defaults.'
+  route_name: gvquest_analytics.settings
+  parent: system.admin_config_services
+  weight: 0

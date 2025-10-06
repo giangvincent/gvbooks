@@ -1,19 +1,21 @@
 {#
-  Custom card layout for the "user_books" view.
+  Custom card layout for the "my_books" view.
   Wraps each row in a responsive card using Tailwind utility classes.
 #}
 
 {% if rows|length %}
-  {% for row in rows %}
-    <article{{ row.attributes.addClass('gvquest-card flex flex-col gap-4') }}>
-      {{ row.content }}
-    </article>
-  {% endfor %}
+  <div class="gvquest-dashboard-grid">
+    {% for row in rows %}
+      <article{{ row.attributes.addClass('gvquest-card flex flex-col gap-4') }}>
+        {{ row.content }}
+      </article>
+    {% endfor %}
+  </div>
 {% else %}
   <div class="gvquest-empty-state">
     <h3 class="text-lg font-semibold text-brand-deep mb-2">No books yet</h3>
     <p class="mb-4">Upload your first book to start building your GvQuest library.</p>
-    <a class="inline-flex items-center gap-2 rounded-full bg-brand-deep px-4 py-2 text-sm font-semibold text-white hover:bg-brand-accent hover:text-brand-deep" href="{{ path('node.add_page') }}">
+    <a class="inline-flex items-center gap-2 rounded-full bg-brand-deep px-4 py-2 text-sm font-semibold text-white hover:bg-brand-accent hover:text-brand-deep" href="{{ path('node.add', {'node_type': 'book'}) }}">
       <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
       </svg>

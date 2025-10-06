@@ -1,0 +1,17 @@
+dashboard:
+  css:
+    theme:
+      css/analytics-dashboard.css: {}
+  js:
+    js/analytics-dashboard.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+
+ingest:
+  js:
+    js/analytics-ingest.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

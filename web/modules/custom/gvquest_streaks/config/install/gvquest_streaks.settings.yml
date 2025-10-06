@@ -1,0 +1,7 @@
+daily_target_type: pages
+daily_target_value: 10
+grace_days: 0
+timezone: 'UTC'
+start_date: ''
+email_reminder_enabled: false
+email_reminder_time: '18:00'

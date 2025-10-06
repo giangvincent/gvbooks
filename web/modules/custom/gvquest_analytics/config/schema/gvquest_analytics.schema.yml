@@ -1,0 +1,16 @@
+gvquest_analytics.settings:
+  type: config_object
+  label: 'GVQuest analytics settings'
+  mapping:
+    telemetry_enabled:
+      type: boolean
+      label: 'Telemetry enabled globally'
+    default_user_opt_in:
+      type: boolean
+      label: 'Default user telemetry opt-in'
+    debounce_seconds:
+      type: integer
+      label: 'Minimum seconds between events'
+    aggregation_lookback_days:
+      type: integer
+      label: 'Aggregation lookback window'

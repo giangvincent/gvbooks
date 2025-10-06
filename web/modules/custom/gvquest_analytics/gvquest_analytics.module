@@ -1,0 +1,43 @@
+<?php
+
+use Drupal\gvquest_analytics\Entity\ReadingEvent;
+
+/**
+ * Implements hook_entity_insert().
+ */
+function gvquest_analytics_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  if ($entity->getEntityTypeId() !== 'reading_log') {
+    return;
+  }
+
+  $config = \Drupal::config('gvquest_analytics.settings');
+  if (!$config->get('telemetry_enabled')) {
+    return;
+  }
+
+  $uid = (int) $entity->get('user_id')->target_id;
+  if (!$uid) {
+    return;
+  }
+
+  $userData = \Drupal::service('user.data')->get('gvquest_analytics', $uid, 'opt_in');
+  if ($userData === FALSE) {
+    return;
+  }
+
+  $now = \Drupal::time()->getRequestTime();
+  $event_storage = \Drupal::entityTypeManager()->getStorage('reading_event');
+  /** @var ReadingEvent $event */
+  $event = $event_storage->create([
+    'user_id' => $uid,
+    'book_nid' => (int) $entity->get('book_nid')->target_id,
+    'started_at' => $now,
+    'ended_at' => $now,
+    'duration' => 0,
+    'pages_delta' => (int) $entity->get('pages_read')->value,
+    'current_page' => (int) $entity->get('pages_read')->value,
+    'percent_complete' => (float) $entity->get('percent_complete')->value,
+    'source' => 'manual',
+  ]);
+  $event->save();
+}

@@ -1,0 +1,10 @@
+name: 'GVQuest Streaks'
+type: module
+description: 'Tracks reading streaks based on daily reading logs and streak rules.'
+core_version_requirement: ^10
+package: 'GVQuest'
+dependencies:
+  - drupal:node
+  - drupal:user
+  - drupal:system
+  - drupal:views
