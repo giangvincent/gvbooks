@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-brand-soft text-slate-800 font-sans;
+  }
+  a {
+    @apply text-brand-deep hover:text-brand-accent;
+  }
+}
+
+@layer components {
+  .gvquest-navbar {
+    @apply bg-brand-deep text-white shadow-lg;
+  }
+  .gvquest-navbar__link {
+    @apply px-4 py-2 text-sm font-semibold transition-colors hover:text-brand-accent;
+  }
+  .gvquest-dashboard-wrapper {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10;
+  }
+  .gvquest-dashboard-heading {
+    @apply text-3xl font-bold text-brand-deep mb-6;
+  }
+  .gvquest-dashboard-grid {
+    @apply grid gap-6 sm:grid-cols-2 xl:grid-cols-3;
+  }
+  .gvquest-card {
+    @apply bg-white rounded-2xl shadow-dashboard p-6 border border-slate-100 transition-transform hover:-translate-y-1 hover:shadow-xl;
+  }
+  .gvquest-card__title {
+    @apply text-xl font-semibold text-brand-deep mb-2;
+  }
+  .gvquest-card__meta {
+    @apply text-sm text-slate-500 flex items-center gap-2;
+  }
+  .gvquest-card__actions a {
+    @apply inline-flex items-center gap-2 text-sm font-medium text-brand-deep hover:text-brand-accent;
+  }
+  .gvquest-empty-state {
+    @apply bg-white rounded-2xl border border-dashed border-brand-deep/40 p-10 text-center text-slate-500;
+  }
+}
+
+@layer utilities {
+  .nav-active {
+    @apply text-brand-accent;
+  }
+}

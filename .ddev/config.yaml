@@ -1,15 +1,15 @@
 name: gvbooks
 type: drupal10
 docroot: web
-php_version: "8.2"
+php_version: "8.3"
 webserver_type: nginx-fpm
-router_http_port: "8080"
-router_https_port: "8443"
-router_bind_all_interfaces: false
 xdebug_enabled: false
 additional_hostnames: []
 additional_fqdns: []
+database:
+  type: mariadb
+  version: "10.11"
 use_dns_when_possible: true
-timezone: ""
-composer_version: ""
+composer_version: "2"
+corepack_enable: true
 web_environment: []

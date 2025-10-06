@@ -1,0 +1,100 @@
+{#
+  Custom Drupal page template for GVQuest ReadPath Theme.
+  Provides a Tailwind-powered layout with responsive dashboard navigation.
+#}
+
+{{ attach_library('gvquest_readpath_theme/navbar') }}
+
+{% set current_uri = app.request.getRequestUri() %}
+{% set links = [
+  {
+    'title': 'Home',
+    'url': path('<front>'),
+    'active': current_uri == path('<front>')
+  },
+  {
+    'title': 'Dashboard',
+    'url': path('user.page'),
+    'active': current_uri starts with path('user.page')
+  },
+  {
+    'title': 'Upload Book',
+    'url': path('node.add_page'),
+    'active': current_uri starts with path('node.add_page')
+  }
+] %}
+
+<header class="gvquest-navbar">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between py-4">
+      <div class="flex items-center gap-3">
+        <a class="inline-flex items-center gap-2 text-xl font-bold text-white" href="{{ path('<front>') }}">
+          <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-brand-accent text-brand-deep font-semibold">GQ</span>
+          <span>GvQuest ReadPath</span>
+        </a>
+      </div>
+      <div class="flex items-center lg:hidden">
+        <button type="button" class="js-gvquest-nav-toggle inline-flex items-center justify-center rounded-md border border-white/30 p-2 text-white" aria-controls="gvquest-main-nav" aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+      <nav id="gvquest-main-nav" class="hidden w-full max-w-xl flex-col gap-2 text-white lg:flex lg:flex-row lg:items-center lg:justify-end lg:gap-6 lg:w-auto">
+        {% for item in links %}
+          <a href="{{ item.url }}" class="gvquest-navbar__link {{ item.active ? 'nav-active' }}">{{ item.title }}</a>
+        {% endfor %}
+        {% if app.user %}
+          <a href="{{ path('user.logout') }}" class="gvquest-navbar__link">Logout</a>
+        {% else %}
+          <a href="{{ path('user.login') }}" class="gvquest-navbar__link">Login</a>
+        {% endif %}
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main id="main-content" class="gvquest-dashboard-wrapper">
+  {% if page.highlighted %}
+    <div class="mb-6">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+  {% if page.breadcrumb %}
+    <div class="mb-4 text-sm text-slate-500">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
+  {% if page.dashboard %}
+    <section class="mb-12">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <h2 class="gvquest-dashboard-heading">My Library</h2>
+        <a href="{{ path('node.add_page') }}" class="inline-flex items-center gap-2 rounded-full bg-brand-accent px-4 py-2 text-sm font-semibold text-brand-deep shadow-md hover:bg-orange-400">
+          <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+          </svg>
+          Upload Book
+        </a>
+      </div>
+      {{ page.dashboard }}
+    </section>
+  {% endif %}
+
+  <section class="space-y-8">
+    {{ page.content }}
+  </section>
+</main>
+
+<footer class="bg-white border-t border-slate-200 py-10">
+  <div class="mx-auto flex max-w-7xl flex-col gap-4 px-4 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+    <div>&copy; {{ "now"|date("Y") }} GvQuest. All rights reserved.</div>
+    {% if page.footer %}
+      <div class="flex flex-wrap items-center gap-4">
+        {{ page.footer }}
+      </div>
+    {% endif %}
+  </div>
+</footer>

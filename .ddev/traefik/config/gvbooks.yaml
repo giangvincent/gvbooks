@@ -1,0 +1,131 @@
+#ddev-generated
+# If you remove the ddev-generated line above you
+# are responsible for maintaining this file. DDEV will not then
+# update it, for example if you add `additional_hostnames`, etc.
+
+http:
+  routers:
+    gvbooks-phpmyadmin-80-http:
+      entrypoints:
+        - http-8036
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-phpmyadmin-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "gvbooks-redirectHttps"
+    gvbooks-web-80-http:
+      entrypoints:
+        - http-33001
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-web-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "gvbooks-redirectHttps"
+    gvbooks-web-8025-http:
+      entrypoints:
+        - http-8025
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-web-8025"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "gvbooks-redirectHttps"
+    gvbooks-xhgui-80-http:
+      entrypoints:
+        - http-8143
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-xhgui-80"
+      ruleSyntax: v3
+      tls: false
+      # middlewares:
+      #   - "gvbooks-redirectHttps"
+    
+    
+    gvbooks-phpmyadmin-80-https:
+      entrypoints:
+        - http-8037
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-phpmyadmin-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    
+    gvbooks-web-80-https:
+      entrypoints:
+        - http-443
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-web-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    gvbooks-web-8025-https:
+      entrypoints:
+        - http-8026
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-web-8025"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+    gvbooks-xhgui-80-https:
+      entrypoints:
+        - http-8142
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-xhgui-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
+
+  middlewares:
+    gvbooks-redirectHttps:
+      redirectScheme:
+        scheme: https
+        permanent: true
+
+  services:
+    gvbooks-phpmyadmin-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-gvbooks-phpmyadmin:80
+        
+    
+    gvbooks-web-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-gvbooks-web:80
+        
+    gvbooks-web-8025:
+      loadbalancer:
+        servers:
+          - url: http://ddev-gvbooks-web:8025
+        
+    
+    
+    gvbooks-xhgui-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-gvbooks-xhgui:80
+        
+    
+    
+
+tls:
+  certificates:
+    - certFile: /mnt/ddev-global-cache/traefik/certs/gvbooks.crt
+      keyFile: /mnt/ddev-global-cache/traefik/certs/gvbooks.key

@@ -1,0 +1,19 @@
+name: 'GVQuest ReadPath Theme'
+type: theme
+description: 'Custom Tailwind-powered theme for GvBooks dashboards and media.'
+core_version_requirement: ^10
+base theme: olivero
+libraries:
+  - gvquest_readpath_theme/global-styling
+  - gvquest_readpath_theme/navbar
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  banner: 'Banner'
+  highlighted: 'Highlighted'
+  breadcrumb: 'Breadcrumb'
+  dashboard: 'Dashboard Cards'
+  content: 'Content'
+  sidebar: 'Sidebar'
+  footer: 'Footer'

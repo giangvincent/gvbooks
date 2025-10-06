@@ -1,0 +1,11 @@
+global-styling:
+  css:
+    theme:
+      css/dist/styles.css: {}
+navbar:
+  js:
+    js/navbar.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/once
