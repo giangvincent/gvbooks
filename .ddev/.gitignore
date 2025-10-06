@@ -1,0 +1,6 @@
+db_snapshots/
+.machine/
+tmp/
+commands/host/
+commands/db/
+commands/web/
