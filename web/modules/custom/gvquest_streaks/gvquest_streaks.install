@@ -47,3 +47,28 @@ function gvquest_streaks_schema() {
 
   return $schema;
 }
+
+
+/**
+ * Install entity storage for first-time installs.
+ */
+function gvquest_streaks_install() {
+  $m = \Drupal::entityDefinitionUpdateManager();
+  foreach (['reading_log','streak_rule'] as $id) {
+    if ($def = \Drupal::entityTypeManager()->getDefinition($id, FALSE)) {
+      $m->installEntityType($def);
+    }
+  }
+}
+
+/**
+ * Re-install entity storage if it was added after initial install.
+ */
+function gvquest_streaks_update_9001() {
+  $m = \Drupal::entityDefinitionUpdateManager();
+  foreach (['reading_log','streak_rule'] as $id) {
+    if ($def = \Drupal::entityTypeManager()->getDefinition($id, FALSE)) {
+      $m->installEntityType($def);
+    }
+  }
+}

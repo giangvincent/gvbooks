@@ -47,6 +47,7 @@ class StreakDashboardController extends ControllerBase implements ContainerInjec
    */
   public function dashboard() {
     $account = $this->currentUser();
+    dd($account);
     $uid = (int) $account->id();
 
     // Evaluate fresh metrics and persist cache for nightly summaries.

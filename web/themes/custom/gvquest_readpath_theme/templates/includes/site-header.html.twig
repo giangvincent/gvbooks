@@ -19,9 +19,11 @@
       </button>
     </div>
     <nav id="gvquest-main-nav" class="sana-nav__links">
+      {{dump(links)}}
       {% for item in links %}
         <a href="{{ item.url }}" class="sana-nav__link {{ item.active ? 'sana-nav__link--active' }}">{{ item.title }}</a>
       {% endfor %}
+      {{dump(app.user)}}
       {% if app.user %}
         <a href="{{ path('user.logout') }}" class="sana-nav__link lg:inline-flex hidden">{{ 'Logout'|t }}</a>
       {% else %}

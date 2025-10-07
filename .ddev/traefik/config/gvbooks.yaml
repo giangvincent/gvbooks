@@ -5,19 +5,9 @@
 
 http:
   routers:
-    gvbooks-phpmyadmin-80-http:
-      entrypoints:
-        - http-8036
-      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
-      
-      service: "gvbooks-phpmyadmin-80"
-      ruleSyntax: v3
-      tls: false
-      # middlewares:
-      #   - "gvbooks-redirectHttps"
     gvbooks-web-80-http:
       entrypoints:
-        - http-33001
+        - http-33002
       rule: HostRegexp(`^gvbooks\.ddev\.site$`)
       
       service: "gvbooks-web-80"
@@ -45,18 +35,17 @@ http:
       tls: false
       # middlewares:
       #   - "gvbooks-redirectHttps"
-    
-    
-    gvbooks-phpmyadmin-80-https:
+    gvbooks-phpmyadmin-80-http:
       entrypoints:
-        - http-8037
+        - http-8036
       rule: HostRegexp(`^gvbooks\.ddev\.site$`)
       
       service: "gvbooks-phpmyadmin-80"
       ruleSyntax: v3
-      
-      tls: true
-      
+      tls: false
+      # middlewares:
+      #   - "gvbooks-redirectHttps"
+    
     
     
     gvbooks-web-80-https:
@@ -91,6 +80,17 @@ http:
       tls: true
       
     
+    gvbooks-phpmyadmin-80-https:
+      entrypoints:
+        - http-8037
+      rule: HostRegexp(`^gvbooks\.ddev\.site$`)
+      
+      service: "gvbooks-phpmyadmin-80"
+      ruleSyntax: v3
+      
+      tls: true
+      
+    
 
   middlewares:
     gvbooks-redirectHttps:
@@ -99,12 +99,6 @@ http:
         permanent: true
 
   services:
-    gvbooks-phpmyadmin-80:
-      loadbalancer:
-        servers:
-          - url: http://ddev-gvbooks-phpmyadmin:80
-        
-    
     gvbooks-web-80:
       loadbalancer:
         servers:
@@ -121,6 +115,12 @@ http:
       loadbalancer:
         servers:
           - url: http://ddev-gvbooks-xhgui:80
+        
+    
+    gvbooks-phpmyadmin-80:
+      loadbalancer:
+        servers:
+          - url: http://ddev-gvbooks-phpmyadmin:80
         
     
     

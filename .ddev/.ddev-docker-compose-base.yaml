@@ -64,7 +64,6 @@ services:
       - DDEV_USER
       - DDEV_VERSION
       - DOCKER_IP=127.0.0.1
-      - HOST_DOCKER_INTERNAL_IP=
       - IS_DDEV_PROJECT=true
       - LINES
       - MYSQL_HISTFILE=/mnt/ddev-global-cache/mysqlhistory/${DDEV_SITENAME}-db/mysql_history
@@ -181,7 +180,6 @@ services:
     - DRUSH_OPTIONS_URI=$DDEV_PRIMARY_URL
     
     - DOCKER_IP=127.0.0.1
-    - HOST_DOCKER_INTERNAL_IP=
     # HTTP_EXPOSE allows for ports accepting HTTP traffic to be accessible from <site>.ddev.site:<port>
     # To expose a container port to a different host port, define the port as hostPort:containerPort
     # You can optionally expose an HTTPS port option for any ports defined in HTTP_EXPOSE.
@@ -204,7 +202,12 @@ services:
     - TZ=Asia/Ho_Chi_Minh
     - USER=giangvincent
     - VIRTUAL_HOST=${DDEV_HOSTNAME}
-    - START_SCRIPT_TIMEOUT=30
+    # This timeout is used for the web container's /start.sh,
+    # it should be divided by the number of times it's going to be used.
+    # The total timeout must be less than the default_container_timeout,
+    # that's why we subtract 5 seconds to make sure we didn't hit exactly.
+    # Currently used in 2 places: n-install.sh, install_nvm.sh
+    - START_SCRIPT_TIMEOUT=57
     
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
@@ -212,13 +215,6 @@ services:
       com.ddev.app-type: drupal10
       com.ddev.approot: $DDEV_APPROOT
 
-      
-
-      
-    external_links:
-      - "ddev-router:gvbooks.ddev.site"
-      
-      
     healthcheck:
       interval: "1s"
       retries: 70
@@ -227,7 +223,7 @@ services:
       timeout: "70s"
   
   xhgui:
-    image: ddev/ddev-xhgui:v1.24.6
+    image: ddev/ddev-xhgui:20250824_akibaat_buildx_arm_builder
     container_name: ddev-${DDEV_SITENAME}-xhgui
     labels:
       com.ddev.site-name: ${DDEV_SITENAME}
@@ -246,8 +242,6 @@ services:
       - XHGUI_PDO_USER=db
       - XHGUI_PDO_PASS=db
       - TZ=Asia/Ho_Chi_Minh
-    links:
-      - db
     depends_on:
       - db
 networks:
