@@ -4,22 +4,22 @@
 #}
 
 {% if rows|length %}
-  <div class="gvquest-dashboard-grid">
+  <div class="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
     {% for row in rows %}
-      <article{{ row.attributes.addClass('gvquest-card flex flex-col gap-4') }}>
+      <article{{ row.attributes.addClass('sana-card flex flex-col gap-4') }}>
         {{ row.content }}
       </article>
     {% endfor %}
   </div>
 {% else %}
-  <div class="gvquest-empty-state">
-    <h3 class="text-lg font-semibold text-brand-deep mb-2">No books yet</h3>
-    <p class="mb-4">Upload your first book to start building your GvQuest library.</p>
-    <a class="inline-flex items-center gap-2 rounded-full bg-brand-deep px-4 py-2 text-sm font-semibold text-white hover:bg-brand-accent hover:text-brand-deep" href="{{ path('node.add', {'node_type': 'book'}) }}">
+  <div class="rounded-3xl border border-dashed border-white/10 bg-sana-card/40 p-12 text-center">
+    <h3 class="text-lg font-semibold text-sana-text mb-2">{{ 'No books yet'|t }}</h3>
+    <p class="mb-4 text-sana-muted">{{ 'Upload your first book to start building your GVQuest library.'|t }}</p>
+    <a class="sana-button" href="{{ path('node.add', {'node_type': 'book'}) }}">
       <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd" />
       </svg>
-      Upload Book
+      {{ 'Upload Book'|t }}
     </a>
   </div>
 {% endif %}

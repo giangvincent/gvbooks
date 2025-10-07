@@ -1,17 +1,11 @@
-{#
-  Default layout shell for GVQuest theme.
-  Provides shared header/footer while individual pages override main layout.
-#}
-
 {{ attach_library('gvquest_readpath_theme/navbar') }}
 
 {% set current_route = app.request.attributes.get('_route') %}
-{% set current_path = app.request.getPathInfo() %}
 {% set nav_links = [
   {
     'title': 'Home',
     'url': path('<front>'),
-    'active': current_path == '/' or current_route == '<front>'
+    'active': current_route == '<front>'
   },
   {
     'title': 'Dashboard',
@@ -35,36 +29,28 @@
   site_name: site_name
 } %}
 
-<main id="main-content" class="sana-container py-16">
-  {% if page.highlighted %}
-    <div class="mb-6">
-      {{ page.highlighted }}
-    </div>
-  {% endif %}
+<section class="sana-hero py-12 md:py-16">
+  <div class="flex flex-col gap-4">
+    <div class="sana-hero__eyebrow">{{ 'Your personal hub'|t }}</div>
+    <h1 class="sana-hero__title">{{ 'Daily Insights Dashboard'|t }}</h1>
+    <p class="text-lg md:text-xl text-sana-muted max-w-3xl">{{ 'Stay on top of your reading journey with curated sessions, actionable streak insights, and highlights from your latest activity.'|t }}</p>
+  </div>
+</section>
 
-  {% if page.breadcrumb %}
-    <div class="mb-6 text-sm text-sana-muted">
-      {{ page.breadcrumb }}
-    </div>
-  {% endif %}
-
-  <div class="grid gap-10">
+<section class="sana-container pb-20">
+  <div class="grid gap-12">
     {% if page.dashboard %}
-      <section class="rounded-3xl bg-sana-card/60 p-8 shadow-dashboard border border-white/5">
+      <div class="grid gap-6">
         {{ page.dashboard }}
-      </section>
+      </div>
     {% endif %}
 
-    <section class="rounded-3xl bg-sana-card/40 p-8 shadow-dashboard border border-white/5">
-      {{ page.content }}
-    </section>
+    {% if page.content %}
+      <div class="grid gap-10">
+        {{ page.content }}
+      </div>
+    {% endif %}
   </div>
-</main>
-
-{% if page.footer %}
-  <div class="sana-container py-10">
-    {{ page.footer }}
-  </div>
-{% endif %}
+</section>
 
 {% include '@gvquest_readpath_theme/includes/site-footer.html.twig' with { site_name: site_name } %}

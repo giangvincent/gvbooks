@@ -1,0 +1,96 @@
+{{ attach_library('gvquest_readpath_theme/navbar') }}
+
+{% set current_route = app.request.attributes.get('_route') %}
+{% set current_path = app.request.getPathInfo() %}
+{% set nav_links = [
+  {
+    'title': 'Home',
+    'url': path('<front>'),
+    'active': true
+  },
+  {
+    'title': 'Dashboard',
+    'url': path('view.my_daily_reading.page_1'),
+    'active': current_route == 'view.my_daily_reading.page_1'
+  },
+  {
+    'title': 'Analytics',
+    'url': path('gvquest_analytics.dashboard'),
+    'active': current_route == 'gvquest_analytics.dashboard'
+  },
+  {
+    'title': 'Streaks',
+    'url': path('gvquest_streaks.dashboard'),
+    'active': current_route starts with 'gvquest_streaks.'
+  }
+] %}
+
+{% include '@gvquest_readpath_theme/includes/site-header.html.twig' with {
+  links: nav_links,
+  site_name: site_name
+} %}
+
+<section class="sana-hero">
+  <div class="flex flex-col gap-6">
+    <div class="sana-hero__eyebrow">{{ 'Curated Collections'|t }}</div>
+    <h1 class="sana-hero__title">{{ 'Good Design is Obvious'|t }}</h1>
+    <p class="sana-hero__subtitle">{{ 'Great Reading is Transparent'|t }}</p>
+    <div class="sana-pill-group">
+      {% set filters = ['Show All','Branding','Design','Marketing','Photoshop','Artwork'] %}
+      {% for filter in filters %}
+        <span class="sana-pill {{ loop.first ? 'sana-pill--active' }}">{{ filter }}</span>
+      {% endfor %}
+    </div>
+  </div>
+  <div class="flex justify-center md:justify-start">
+    <a href="{{ path('node.add', {'node_type': 'book'}) }}" class="sana-button">
+      <span>{{ '+ Upload Book'|t }}</span>
+      <svg class="h-4 w-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<section class="sana-card-grid">
+  {% if page.content %}
+    {{ page.content }}
+  {% else %}
+    <div class="sana-card">
+      <div class="sana-card__media">
+        <img src="https://via.placeholder.com/640x360/ff4d67/ffffff?text=Bright+Ideas" alt="Placeholder" />
+      </div>
+      <div class="sana-card__label">{{ 'Design • Inspiration'|t }}</div>
+      <div class="sana-card__title">{{ 'Fancy Bright Concept'|t }}</div>
+      <div class="sana-card__excerpt">{{ 'Start your next reading adventure with immersive visuals and curated highlights.'|t }}</div>
+    </div>
+  {% endif %}
+</section>
+
+<section class="sana-logo-strip">
+  {% for i in 0..5 %}
+    <span class="text-sana-muted uppercase tracking-[0.5em] text-xs">LOGOIPSUM</span>
+  {% endfor %}
+</section>
+
+<section class="sana-progress">
+  {% set stats = [
+    {'label': 'IT Solutions', 'value': 94},
+    {'label': 'Marketing', 'value': 90},
+    {'label': 'Consulting', 'value': 85},
+    {'label': 'Production', 'value': 95}
+  ] %}
+  {% for stat in stats %}
+    <div class="sana-progress__item">
+      <div class="flex items-center justify-between text-sm text-sana-text">
+        <span>{{ stat.label|t }}</span>
+        <span>{{ stat.value }}%</span>
+      </div>
+      <div class="sana-progress__track">
+        <div class="sana-progress__fill" style="width: {{ stat.value }}%"></div>
+      </div>
+    </div>
+  {% endfor %}
+</section>
+
+{% include '@gvquest_readpath_theme/includes/site-footer.html.twig' with { site_name: site_name } %}
